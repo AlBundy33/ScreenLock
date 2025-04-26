@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_title"
@@ -31,6 +30,7 @@
         <service
             android:name=".ScreenLockTileService"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:icon="@drawable/rounded_lock_24"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />

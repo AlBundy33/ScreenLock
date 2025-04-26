@@ -11,8 +11,8 @@ class ScreenLockTileService : TileService() {
     override fun onStartListening() {
         qsTile?.apply {
             label = getString(R.string.app_title)
-            icon = Icon.createWithResource(this@ScreenLockTileService, R.drawable.ic_launcher_foreground)
-            state = Tile.STATE_ACTIVE
+            icon = Icon.createWithResource(this@ScreenLockTileService, R.drawable.rounded_lock_24)
+            state = Tile.STATE_INACTIVE
             updateTile()
         }
     }
