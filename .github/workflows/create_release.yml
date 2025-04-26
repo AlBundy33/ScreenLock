@@ -23,7 +23,7 @@ jobs:
         run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > /tmp/keystore.jks
 
       - name: Build with Gradle
-        run: ./gradlew build -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
 
       - name: release
         uses: actions/create-release@v1
@@ -33,19 +33,19 @@ jobs:
           prerelease: false
           release_name: ${{ github.ref_name }}
           tag_name: ${{ github.ref }}
-          body: ""
+          body: "new release"
         env:
           GITHUB_TOKEN: ${{ github.token }}
  
-      - name: upload debug-apk
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: app/build/outputs/apk/debug/app-debug.apk
-          asset_name: screenlock-debug-${{ github.ref_name }}.apk
-          asset_content_type: application/vnd.android.package-archive
+#      - name: upload debug-apk
+#        uses: actions/upload-release-asset@v1
+#        env:
+#          GITHUB_TOKEN: ${{ github.token }}
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#          asset_path: app/build/outputs/apk/debug/app-debug.apk
+#          asset_name: screenlock-debug-${{ github.ref_name }}.apk
+#          asset_content_type: application/vnd.android.package-archive
 
       - name: upload release-apk
         uses: actions/upload-release-asset@v1
