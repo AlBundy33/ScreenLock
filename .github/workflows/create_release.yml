@@ -19,8 +19,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Decode Keystore
+        run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > /tmp/keystore.jks
+
       - name: Build with Gradle
-        run : ./gradlew build
+        run: ./gradlew build -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
 
       - name: release
         uses: actions/create-release@v1
@@ -33,7 +36,8 @@ jobs:
           body: ""
         env:
           GITHUB_TOKEN: ${{ github.token }}
-      - name: upload apk
+ 
+      - name: upload debug-apk
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -41,4 +45,14 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: app/build/outputs/apk/debug/app-debug.apk
           asset_name: screenlock-debug-${{ github.ref_name }}.apk
+          asset_content_type: application/vnd.android.package-archive
+
+      - name: upload release-apk
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: app/build/outputs/apk/release/app-release.apk
+          asset_name: screenlock--${{ github.ref_name }}.apk
           asset_content_type: application/vnd.android.package-archive
