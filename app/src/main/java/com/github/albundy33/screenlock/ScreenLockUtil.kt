@@ -14,11 +14,12 @@ object ScreenLockUtil {
         if (dpm.isAdminActive(component)) {
             dpm.lockNow()
         } else if (toast) {
-            Toast.makeText(context, "Admin-Rechte erforderlich", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,
+                context.getString(R.string.needs_admin_rights_message), Toast.LENGTH_SHORT).show()
         } else {
-                val intent = Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN).apply {
+            val intent = Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN).apply {
                 putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, component)
-                putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Benötigt Adminrechte zum Sperren des Bildschirms.")
+                putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, context.getString(R.string.needs_admin_rights_message))
             }
             context.startActivity(intent)
         }

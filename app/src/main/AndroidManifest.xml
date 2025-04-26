@@ -4,7 +4,7 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="ScreenLock"
+        android:label="@string/app_title"
         android:supportsRtl="true"
         tools:targetApi="30">
         <activity

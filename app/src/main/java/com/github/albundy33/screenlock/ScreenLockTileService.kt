@@ -10,7 +10,7 @@ import android.os.Build
 class ScreenLockTileService : TileService() {
     override fun onStartListening() {
         qsTile?.apply {
-            label = "ScreenLock"
+            label = getString(R.string.app_title)
             icon = Icon.createWithResource(this@ScreenLockTileService, R.drawable.ic_launcher_foreground)
             state = Tile.STATE_ACTIVE
             updateTile()
