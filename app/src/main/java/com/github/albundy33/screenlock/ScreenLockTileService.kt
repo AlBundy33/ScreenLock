@@ -3,10 +3,7 @@ package com.github.albundy33.screenlock
 import android.service.quicksettings.TileService
 import android.service.quicksettings.Tile
 import android.graphics.drawable.Icon
-import androidx.annotation.RequiresApi
-import android.os.Build
 
-@RequiresApi(Build.VERSION_CODES.N)
 class ScreenLockTileService : TileService() {
     override fun onStartListening() {
         qsTile?.apply {

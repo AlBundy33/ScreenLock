@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="needs_admin_rights_message">Needs admin rights to lock the screen</string>
+</resources>
