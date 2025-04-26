@@ -1,8 +1,9 @@
 name: AndroidBuild
 
 on:
-  push :
-    branches : [ main ]
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build:
