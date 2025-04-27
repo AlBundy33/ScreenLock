@@ -25,8 +25,12 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
 
+      - id: apk-name
+        run: |
+          echo "value=`basename ${{ github.repository }}`-${{ github.ref_name }}.apk" >> $GITHUB_OUTPUT
+
       - name: rename asset
-        run: mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/screenlock-${{ github.ref_name }}.apk
+        run: mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/${{ steps.apk-name.outputs.value }}
 
       - name: release
         uses: softprops/action-gh-release@v2
@@ -37,4 +41,4 @@ jobs:
           generate_release_notes: true
           fail_on_unmatched_files: true
           files: |
-            app/build/outputs/apk/release/screenlock-${{ github.ref_name }}.apk
+            app/build/outputs/apk/release/${{ steps.apk-name.outputs.value }}
