@@ -35,5 +35,6 @@ jobs:
           draft: false
           prerelease: false
           generate_release_notes: true
+          fail_on_unmatched_files: true
           files: |
             app/build/outputs/apk/release/screenlock-${{ github.ref_name }}.apk
