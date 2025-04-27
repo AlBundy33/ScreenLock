@@ -1,6 +1,3 @@
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -21,26 +18,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    val keystorePropertiesFile = rootProject.file("keystore.properties")
-    if (keystorePropertiesFile.exists()) {
-        val keystoreProperties = Properties().apply {
-            load(FileInputStream(keystorePropertiesFile))
-        }
-        val missingProperties = listOf("keyFile", "storePassword", "keyAlias", "keyPassword")
-            .filter { keystoreProperties[it] == null }
-        if (missingProperties.isNotEmpty()) {
-            throw GradleException("Missing required properties in keystore.properties: ${missingProperties.joinToString(", ")}")
-        }
-        signingConfigs {
-            create("release") {
-                storeFile = file(keystoreProperties["keyFile"] as String)
-                storePassword = keystoreProperties["storePassword"] as String
-                keyAlias = keystoreProperties["keyAlias"] as String
-                keyPassword = keystoreProperties["keyPassword"] as String
-            }
-        }
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -48,9 +25,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            if (signingConfigs.findByName("release") != null) {
-                signingConfig = signingConfigs.getByName("release")
-            }
         }
     }
     compileOptions {
