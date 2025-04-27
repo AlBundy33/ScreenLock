@@ -38,5 +38,7 @@ to build only the app-release.apk run `gradle assembleRelease`
 
 ## cannot unlock with fingerprint after using the app
 At first, I considered this a bug 🐛 — or at least unexpected behavior — but now I actually see it more as a feature ✨:
+
 The device is locked as a device admin, which means you have to unlock it using your PIN or pattern.
+
 While this can be a bit annoying at times, it ensures that no one 🕵️‍♂️ can unlock your phone just by pressing your finger on the sensor.
