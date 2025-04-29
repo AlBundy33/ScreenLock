@@ -49,10 +49,23 @@ can also be tested with docker
 docker run -it --rm ubuntu bash
 ```
 build steps
+
+install dependencies
 ```
 apt install git openjdk-17-jdk-headless google-android-cmdline-tools-13.0-installer --update
+update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+```
+
+license agreements
+```
 sdkmanager --licenses
+```
+clone
+```
 git clone https://github.com/AlBundy33/ScreenLock.git
-cd ScreenLock/
+cd ScreenLock
+```
+build
+```
 ANDROID_HOME=/usr/lib/android-sdk ./gradlew build
 ```
