@@ -42,3 +42,17 @@ At first, I considered this a bug 🐛 — or at least unexpected behavior — b
 The device is locked as a device admin, which means you have to unlock it using your PIN or pattern.
 
 While this can be a bit annoying at times, it ensures that no one 🕵️‍♂️ can unlock your phone just by pressing your finger on the sensor.
+
+## build
+can also be tested with docker
+```
+docker run -it --rm ubuntu bash
+```
+build steps
+```
+apt install git openjdk-17-jdk-headless google-android-cmdline-tools-13.0-installer --update
+sdkmanager --licenses
+git clone https://github.com/AlBundy33/ScreenLock.git
+cd ScreenLock/
+ANDROID_HOME=/usr/lib/android-sdk ./gradlew build
+```
