@@ -55,6 +55,7 @@ keytool -genkeypair \
 
 and modify your ~/.gradle/gradle.properties with
 ```
+mkdir ~/.gradle
 cat <<EOT >>~/.gradle/gradle.properties
 android.injected.signing.store.file=$HOME/signing.jks
 android.injected.signing.key.alias=android
