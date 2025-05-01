@@ -16,7 +16,7 @@ docker run -it --rm ubuntu bash
 
 install dependencies
 ```
-apt install git openjdk-17-jdk-headless google-android-cmdline-tools-13.0-installer --update
+apt install git openjdk-17-jdk-headless google-android-cmdline-tools-13.0-installer --update --no-install-recommends
 ```
 ```
 update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
@@ -74,6 +74,6 @@ to create
 ```
 to build only the app-release.apk run
 ```
-gradle assembleRelease
+./gradlew assembleRelease
 ```
 
