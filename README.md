@@ -26,6 +26,10 @@ accept license agreements
 ```
 sdkmanager --licenses
 ```
+to accept all run
+```
+yes | sdkmanager --licenses
+```
 clone
 ```
 git clone https://github.com/AlBundy33/ScreenLock.git
