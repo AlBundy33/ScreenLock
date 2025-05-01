@@ -16,7 +16,7 @@ docker run -it --rm ubuntu bash
 
 install dependencies
 ```
-apt install git openjdk-17-jdk-headless google-android-cmdline-tools-13.0-installer --update --no-install-recommends
+DEBIAN_FRONTEND=noninteractive apt install git openjdk-17-jdk-headless google-android-cmdline-tools-13.0-installer --update --no-install-recommends
 ```
 ```
 update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
