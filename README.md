@@ -24,10 +24,19 @@ android.injected.signing.key.alias=android
 android.injected.signing.store.password=foobar
 android.injected.signing.key.password=foobar
 ```
+or as commamd
+```
+cat <<EOT >>~/.gradle/gradle.properties
+android.injected.signing.store.file=$HOME/signing.jks
+android.injected.signing.key.alias=android
+android.injected.signing.store.password=foobar
+android.injected.signing.key.password=foobar
+EOT
+```
 
 now you can run
 ```
-gradle build
+./gradlew build
 ```
 to create
 ```
@@ -65,8 +74,9 @@ clone
 ```
 git clone https://github.com/AlBundy33/ScreenLock.git
 cd ScreenLock
+echo sdk.dir=/usr/lib/android-sdk >>local.properties
 ```
 build
 ```
-ANDROID_HOME=/usr/lib/android-sdk ./gradlew build
+./gradlew build
 ```
