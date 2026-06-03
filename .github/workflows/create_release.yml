@@ -34,7 +34,7 @@ jobs:
         run: mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/${{ steps.apk-name.outputs.value }}
 
       - name: Create release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         id: create_release
         with:
           draft: false
